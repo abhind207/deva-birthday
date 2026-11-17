@@ -57,7 +57,9 @@ export default function Proposal() {
     const vh = window.innerHeight
     const m = 14
     // Keep clear of the question text and the YES button so the page stays usable.
-    const avoid = [textRef.current, yesRef.current].filter((e): e is HTMLElement => !!e).map((e) => pad(e.getBoundingClientRect(), 14))
+    const avoid = [textRef.current, yesRef.current]
+      .filter((e: HTMLElement | null): e is HTMLButtonElement | HTMLDivElement => e !== null)
+      .map((e) => pad(e.getBoundingClientRect(), 14))
     let target: Pt | null = null
     for (let i = 0; i < 60 && !target; i++) {
       const c = { x: m + Math.random() * Math.max(1, vw - w - 2 * m), y: m + Math.random() * Math.max(1, vh - h - 2 * m) }

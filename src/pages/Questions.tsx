@@ -81,7 +81,7 @@ export default function Questions() {
     }
     setDone(true)
     const saves = Promise.all([persist(1), persist(2), persist(3), track('questions_completed', '/questions')])
-    await Promise.all([sleep(2400), withTimeout(saves, 4000, [])])
+    await Promise.all([sleep(2400), withTimeout(saves, 4000, [false, false, false, false])])
     nav('/proposal')
   }
 
